@@ -3,71 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Godley Greenline Landscaping</title>
+  <title>{{businessName}} | {{category}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
   <style>
-    :root { --accent: #617861; --ink: #1f2a20; --paper: #f6f6ef; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; color: var(--ink); background: var(--paper);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
-      background-image: radial-gradient(rgba(0,0,0,0.02) 0.8px, transparent 0.8px);
-      background-size: 6px 6px;
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --ink: #2f332d;
+      --muted: #6e756a;
+      --line: #d9ded5;
+      --accent: {{accentColor}};
+      --accent-soft: {{accentLight}};
+      --radius: 18px;
+      --shadow: 0 14px 38px rgba(35, 40, 32, 0.08);
     }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 60px; }
-    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; }
-    .hero { padding: 42px 0 24px; border-bottom: 1px solid rgba(0,0,0,0.1); }
-    .tag { color: var(--accent); margin-top: 6px; }
-    .grid { display: grid; gap: 24px; grid-template-columns: 1.2fr 1fr; margin-top: 28px; }
-    .card { background: rgba(255,255,255,0.65); border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 18px; }
-    ul { padding-left: 20px; }
-    iframe { width: 100%; height: 260px; border: 0; border-radius: 10px; }
-    .cta { margin-top: 30px; padding: 18px; border-left: 3px solid var(--accent); background: rgba(255,255,255,0.6); }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(rgba(0,0,0,0.02) 0.7px, transparent 0.7px),
+        var(--bg);
+      background-size: 5px 5px, auto;
+      line-height: 1.7;
+    }
+
+    .container { width: min(1080px, 92vw); margin: 0 auto; }
+    section { padding: 4.5rem 0; }
+    h1, h2, h3 { margin: 0 0 1rem; font-family: Fraunces, Georgia, serif; line-height: 1.15; }
+    h1 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); }
+    h3 { font-size: 1.15rem; }
+    p { margin: 0 0 1rem; color: #3c423a; }
+
+    .reveal { opacity: 0; transform: translateY(14px); animation: fadeUp .8s ease forwards; }
+    .d2 { animation-delay: .15s; } .d3 { animation-delay: .28s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    .hero { padding: 6.5rem 0 5rem; position: relative; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -2rem;
+      top: 1rem;
+      width: 200px;
+      height: 200px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      opacity: .65;
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--muted); }
+    .tagline { font-size: clamp(1.08rem, 2.2vw, 1.35rem); max-width: 640px; }
+    .cta-row { margin-top: 1.7rem; display: flex; flex-wrap: wrap; gap: .9rem; align-items: center; }
+    .btn {
+      display: inline-block;
+      padding: .85rem 1.25rem;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: var(--shadow); }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-soft { background: var(--accent-soft); color: var(--ink); border-color: color-mix(in oklab, var(--accent) 22%, white); }
+
+    .about-wrap {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(1.4rem, 3.3vw, 2.2rem);
+    }
+
+    .services-grid {
+      margin-top: 1.4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.1rem;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .service-icon { font-size: 1.15rem; color: var(--accent); margin-right: .45rem; }
+
+    .reviews { background: color-mix(in oklab, var(--accent-soft) 28%, white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .rating-pill {
+      display: inline-flex; align-items: center; gap: .55rem;
+      background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: .45rem .85rem; font-weight: 600;
+    }
+    .stars { color: #c08f2e; letter-spacing: 1px; }
+    .review-grid { margin-top: 1.2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .review-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1.05rem; box-shadow: 0 8px 20px rgba(0,0,0,.04); }
+
+    .hours-loc { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .panel {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      padding: clamp(1rem, 2.6vw, 1.6rem);
+    }
+    .hours-box pre { margin: .2rem 0 0; font: inherit; white-space: pre-wrap; color: #445044; }
+    iframe { width: 100%; min-height: 320px; border: 0; border-radius: 12px; }
+
+    footer {
+      padding: 3.3rem 0 4.2rem;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+    .footer-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.7rem 1.1rem; }
+    .fine { color: var(--muted); font-size: .95rem; }
     a { color: inherit; }
-    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+
+    @media (min-width: 840px) {
+      .hours-loc { grid-template-columns: .95fr 1.05fr; align-items: stretch; }
+    }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <h1>Godley Greenline Landscaping</h1>
-      <p class="tag">Godley Greenline Landscaping serving local families and businesses with care</p>
+  <main>
+    <section class="hero container">
+      <p class="eyebrow reveal">Trusted local {{category}}</p>
+      <h1 class="reveal d2">{{businessName}}</h1>
+      <p class="tagline reveal d3">{{tagline}}</p>
+      <div class="cta-row reveal d3">
+        <a class="btn btn-primary" href="tel:{{phone}}">Call {{phone}}</a>
+        <a class="btn btn-soft" href="#hours-location">View hours and location</a>
+      </div>
     </section>
 
-    <section class="grid">
-      <article class="card">
+    <section class="container">
+      <div class="about-wrap reveal">
         <h2>About</h2>
-        <p>Godley Greenline Landscaping is a local landscaper business focused on practical solutions, respectful service, and clear communication from first call to follow-up.</p>
-        <h3>Services</h3>
-        <ul>
-          <li>Reliable landscaper support</li>
-<li>Transparent scheduling and communication</li>
-<li>Friendly local service with fast response</li>
-        </ul>
-      </article>
-
-      <aside class="card">
-        <h2>Contact</h2>
-        <p><strong>Phone:</strong> (817) 555-0182</p>
-        <p><strong>Address:</strong> 5401 CR 913, Godley, TX 76044</p>
-        <p><strong>Hours:</strong> Mon-Sat 8:00 AM-6:00 PM</p>
-        <p><strong>Reviews:</strong> 4.6 / 5 (44 ratings)</p>
-        <p><a href="https://maps.google.com/?q=Godley+Greenline+Landscaping" target="_blank" rel="noreferrer">Open on Google Maps</a></p>
-      </aside>
+        <p>{{businessName}} delivers detail focused {{category}} work with clear communication and honest timelines. Every visit is handled with care, from first call to final walkthrough. We serve nearby homes and businesses with practical solutions built to last.</p>
+      </div>
     </section>
 
-    <section class="card" style="margin-top:24px;">
-      <h2>Visit Us</h2>
-      <iframe src="https://maps.google.com/maps?q=5401%20CR%20913%2C%20Godley%2C%20TX%2076044&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+    <section class="container">
+      <h2 class="reveal">Services</h2>
+      <div class="services-grid">
+        <article class="service-card reveal"><h3><span class="service-icon">◌</span>Core service visits</h3><p>Reliable day to day support tailored to your property and goals.</p></article>
+        <article class="service-card reveal d2"><h3><span class="service-icon">◌</span>Repairs and upgrades</h3><p>Thoughtful fixes and improvements that keep things running smoothly.</p></article>
+        <article class="service-card reveal d3"><h3><span class="service-icon">◌</span>Scheduled maintenance</h3><p>Preventative care plans designed for consistency and peace of mind.</p></article>
+      </div>
     </section>
 
-    <section class="card" style="margin-top:24px;">
-      <h2>What Customers Say</h2>
-      <p>Known for dependable work, fair communication, and respectful service from start to finish.</p>
+    <section class="reviews">
+      <div class="container">
+        <h2 class="reveal">Reviews</h2>
+        <div class="rating-pill reveal d2"><span class="stars">★★★★★</span> {{rating}} based on {{reviewCount}} Google reviews</div>
+        <div class="review-grid">
+          <article class="review-card reveal"><p>"Professional, punctual, and easy to work with. The team made the process simple and stress free."</p><small>Local customer</small></article>
+          <article class="review-card reveal d2"><p>"Clear updates, clean finish, and great follow through. I would absolutely call again."</p><small>Verified client</small></article>
+          <article class="review-card reveal d3"><p>"Fair pricing and thoughtful service from start to finish. Exactly what we hoped for."</p><small>Neighborhood homeowner</small></article>
+        </div>
+      </div>
     </section>
 
-    <footer class="cta">
-      <strong>Need help today?</strong> Call (817) 555-0182 for quick scheduling.
-    </footer>
+    <section class="container" id="hours-location">
+      <h2 class="reveal">Hours and location</h2>
+      <div class="hours-loc">
+        <div class="panel hours-box reveal d2">
+          <h3>Visit us</h3>
+          <p><strong>Address:</strong><br>{{address}}</p>
+          <p><strong>Phone:</strong> {{phone}}</p>
+          <p><strong>Weekly hours</strong></p>
+          <pre>{{hours}}</pre>
+          <p><a href="{{mapsUrl}}" target="_blank" rel="noreferrer">Open in Google Maps</a></p>
+        </div>
+        <div class="panel reveal d3">
+          <iframe loading="lazy" src="https://maps.google.com/maps?q={{address}}&t=&z=14&ie=UTF8&iwloc=&output=embed" title="Map for {{businessName}}"></iframe>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="container footer-card reveal">
+      <h2>Ready to get started?</h2>
+      <p>Call <strong>{{phone}}</strong> or visit us at <strong>{{address}}</strong>. We are here to help with thoughtful, dependable service.</p>
+      <p class="fine">Thank you for considering {{businessName}}.</p>
+    </div>
+  </footer>
 </body>
 </html>
