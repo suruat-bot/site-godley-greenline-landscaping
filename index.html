@@ -1,410 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{businessName}} | {{category}}</title>
-  <meta name="description" content="{{businessName}} offers trusted {{category}} solutions. Call {{phone}} for fast help.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Godley Greenline Landscaping | landscaper</title>
+  <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/StartBootstrap/startbootstrap-creative@master/dist/assets/favicon.ico" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/StartBootstrap/startbootstrap-creative@master/dist/css/styles.css" rel="stylesheet" />
   <style>
-    :root {
-      --brand-primary: #1B4965;
-      --brand-accent: #CAA53D;
-      --brand-soft: #f0f5f8;
-      --brand-dark: #0f2f44;
-      --accent-color: {{accentColor}};
-      --accent-light: {{accentLight}};
-      --text-main: #212529;
-      --section-pad: 96px;
-      --shadow-soft: 0 12px 32px rgba(0,0,0,.10);
-      --shadow-hover: 0 22px 48px rgba(0,0,0,.18);
+    :root { --bs-primary: #617861; --bs-secondary: #0f172a; }
+    .masthead {
+      background: linear-gradient(rgba(15,23,42,.75), rgba(15,23,42,.7)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+      min-height: 100vh;
     }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text-main);
-      line-height: 1.7;
-      background: #fff;
-    }
-
-    h1,h2,h3,h4,h5 {
-      font-family: 'Playfair Display', serif;
-      letter-spacing: .2px;
-    }
-
-    .section-pad { padding: var(--section-pad) 0; }
-
-    .navbar {
-      backdrop-filter: saturate(180%) blur(8px);
-      background: rgba(255,255,255,.94);
-      border-bottom: 1px solid rgba(0,0,0,.06);
-    }
-
-    .navbar-brand {
-      font-weight: 800;
-      color: var(--brand-primary);
-      font-size: 1.35rem;
-    }
-
-    .btn-phone {
-      background: var(--brand-accent);
-      color: #fff;
-      border: none;
-      font-weight: 700;
-      padding: .7rem 1rem;
-    }
-
-    .btn-phone:hover { background: #000; color: #fff; }
-
-    .hero {
-      min-height: 74vh;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(255,255,255,.15), transparent 35%),
-        radial-gradient(circle at 80% 0%, rgba(255,255,255,.20), transparent 30%),
-        linear-gradient(135deg, var(--brand-primary), var(--brand-dark));
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: .22;
-      pointer-events: none;
-    }
-
-    .hero .hero-content { position: relative; z-index: 2; }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4.7vw, 4rem);
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .hero p { max-width: 660px; font-size: 1.08rem; opacity: .96; }
-
-    .trust-bar {
-      background: var(--brand-soft);
-      border-top: 1px solid rgba(0,0,0,.07);
-      border-bottom: 1px solid rgba(0,0,0,.07);
-    }
-
-    .trust-item i {
-      color: var(--brand-primary);
-      font-size: 1.35rem;
-      margin-right: .45rem;
-    }
-
-    .section-tag {
-      display: inline-block;
-      padding: .4rem .8rem;
-      border-radius: 100px;
-      background: rgba(0,0,0,.06);
-      font-weight: 600;
-      font-size: .85rem;
-      margin-bottom: .8rem;
-    }
-
-    .feature-list li {
-      margin-bottom: .65rem;
-      list-style: none;
-    }
-
-    .feature-list i { color: var(--brand-primary); margin-right: .5rem; }
-
-    .service-card {
-      border: 0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      transition: transform .25s ease, box-shadow .25s ease;
-      height: 100%;
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .service-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 12px;
-      background: var(--brand-soft);
-      color: var(--brand-primary);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .review-card {
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 14px;
-      box-shadow: var(--shadow-soft);
-      height: 100%;
-    }
-
-    .stars { color: #f6b21a; letter-spacing: 2px; }
-
-    .hours-box, .map-box {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(0,0,0,.08);
-      background: #fff;
-    }
-
-    .cta-banner {
-      background: linear-gradient(120deg, var(--brand-primary), var(--brand-dark));
-      color: #fff;
-    }
-
-    footer {
-      background: #111;
-      color: #e7e7e7;
-    }
-
-    footer a { color: #fff; text-decoration: none; }
-
-    .powered { opacity: .78; font-size: .84rem; }
-
-    .badge-rating {
-      background: var(--accent-light);
-      color: #222;
-      border: 1px solid rgba(0,0,0,.08);
-      font-weight: 700;
-    }
-
-    @media (max-width: 991px) {
-      :root { --section-pad: 76px; }
-      .hero { min-height: 66vh; }
-      .navbar .btn-phone { margin-top: .7rem; }
-    }
+    .bg-primary { background-color: #617861 !important; }
+    .divider { background-color: #fff; }
   </style>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg sticky-top py-3">
-    <div class="container">
-      <a class="navbar-brand" href="#home">{{businessName}}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto me-lg-3">
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand" href="#page-top">Godley Greenline Landscaping</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto my-2 my-lg-0">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
-        <a class="btn btn-phone" href="tel:{{phone}}"><i class="bi bi-telephone-fill me-1"></i>{{phone}}</a>
       </div>
     </div>
   </nav>
 
-  <header id="home" class="hero d-flex align-items-center">
-    <div class="container hero-content py-5">
-      <div class="row">
-        <div class="col-lg-8">
-          <span class="section-tag">Top Rated {{category}} Team</span>
-          <h1>{{tagline}}</h1>
-          <p>Welcome to {{businessName}}. We deliver dependable service, clear communication, and quality workmanship that earns five-star trust in your neighborhood.</p>
-          <div class="d-flex flex-wrap gap-3 mt-4">
-            <a href="tel:{{phone}}" class="btn btn-light btn-lg px-4">Call Now</a>
-            <a href="#services" class="btn btn-outline-light btn-lg px-4">Our Services</a>
-            <span class="badge badge-rating align-self-center px-3 py-2"><i class="bi bi-star-fill text-warning me-1"></i>{{rating}} / 5 ({{reviewCount}} reviews)</span>
-          </div>
+  <header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+      <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-9 align-self-end">
+          <h1 class="text-white font-weight-bold">Godley Greenline Landscaping</h1>
+          <hr class="divider" />
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <p class="text-white-75 mb-5">Godley Greenline Landscaping trusted landscaper support for your neighborhood</p>
+          <a class="btn btn-primary btn-xl" href="https://maps.google.com/?q=Godley+Greenline+Landscaping" target="_blank" rel="noopener">Get Directions</a>
         </div>
       </div>
     </div>
   </header>
 
-  <section class="trust-bar py-4">
-    <div class="container">
-      <div class="row g-3 text-center text-md-start">
-        <div class="col-12 col-md-6 col-lg-3 trust-item"><i class="bi bi-award-fill"></i><strong>15+ Years Experience</strong></div>
-        <div class="col-12 col-md-6 col-lg-3 trust-item"><i class="bi bi-shield-check"></i><strong>Licensed and Insured</strong></div>
-        <div class="col-12 col-md-6 col-lg-3 trust-item"><i class="bi bi-lightning-charge-fill"></i><strong>Same-Day Service</strong></div>
-        <div class="col-12 col-md-6 col-lg-3 trust-item"><i class="bi bi-emoji-smile-fill"></i><strong>500+ Happy Customers</strong></div>
+  <section class="page-section bg-primary" id="about">
+    <div class="container px-4 px-lg-5 text-center text-white">
+      <h2 class="mt-0">Dependable landscaper specialists</h2>
+      <hr class="divider divider-light" />
+      <p class="text-white-75 mb-4">From urgent repairs to planned projects, our team delivers prompt communication, clear pricing, and skilled workmanship every time.</p>
+      <p class="mb-0"><strong>Rating:</strong> 4.6/5 from 44 local reviews</p>
+    </div>
+  </section>
+
+  <section class="page-section" id="services">
+    <div class="container px-4 px-lg-5">
+      <h2 class="text-center mt-0">Core Services</h2>
+      <hr class="divider" />
+      <div class="row gx-4 gx-lg-5">
+        <div class="col-lg-4 col-md-6 text-center"><div class="mt-5"><div class="mb-2"><i class="bi-tools fs-1 text-primary"></i></div><h3 class="h4 mb-2">Installations</h3><p class="text-muted mb-0">Code compliant installs for homes and commercial properties.</p></div></div>
+        <div class="col-lg-4 col-md-6 text-center"><div class="mt-5"><div class="mb-2"><i class="bi-lightning-charge fs-1 text-primary"></i></div><h3 class="h4 mb-2">Fast Repairs</h3><p class="text-muted mb-0">Quick diagnostics and durable fixes when time matters.</p></div></div>
+        <div class="col-lg-4 col-md-6 text-center"><div class="mt-5"><div class="mb-2"><i class="bi-shield-check fs-1 text-primary"></i></div><h3 class="h4 mb-2">Preventive Care</h3><p class="text-muted mb-0">Maintenance plans that help prevent costly emergencies.</p></div></div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="section-pad">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <span class="section-tag">About {{businessName}}</span>
-          <h2 class="mb-3">Reliable {{category}} with a focus on lasting results</h2>
-          <p>We are a licensed and insured team known for practical solutions, fair pricing, and clean job sites. Whether you need urgent repairs or planned upgrades, we approach every project with precision and pride.</p>
-          <p class="mb-0">From your first call to final walkthrough, our team keeps the process simple and transparent. We respect your time, your home, and your budget.</p>
-        </div>
-        <div class="col-lg-6">
-          <div class="p-4 p-lg-5 rounded-4" style="background: var(--brand-soft); border:1px solid rgba(0,0,0,.08);">
-            <h5 class="mb-3">Why customers choose us</h5>
-            <ul class="feature-list ps-0 mb-0">
-              <li><i class="bi bi-check-circle-fill"></i>Upfront estimates before work begins</li>
-              <li><i class="bi bi-check-circle-fill"></i>Background-checked technicians</li>
-              <li><i class="bi bi-check-circle-fill"></i>Quality parts backed by warranty</li>
-              <li><i class="bi bi-check-circle-fill"></i>Friendly support from start to finish</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <section class="page-section bg-dark text-white" id="contact">
+    <div class="container px-4 px-lg-5 text-center">
+      <h2 class="mb-4">Contact Godley Greenline Landscaping</h2>
+      <p class="mb-1"><i class="bi-geo-alt"></i> 5401 CR 913, Godley, TX 76044</p>
+      <p class="mb-1"><i class="bi-telephone"></i> (817) 555-0182</p>
+      <p class="mb-4"><i class="bi-clock"></i> Mon-Sat 8:00 AM-6:00 PM</p>
+      <a class="btn btn-light btn-xl" href="tel:(817) 555-0182">Call Now</a>
     </div>
   </section>
 
-  <section id="services" class="section-pad pt-0">
-    <div class="container">
-      <div class="row align-items-end mb-4">
-        <div class="col-lg-8">
-          <span class="section-tag">What We Offer</span>
-          <h2 class="mb-0">Services designed for real-world needs</h2>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card service-card p-4">
-            <div class="service-icon"><i class="bi bi-droplet-half"></i></div>
-            <h5>Leak Detection and Repair</h5>
-            <p class="mb-0">Fast diagnostics and targeted repairs to prevent water damage and high utility bills.</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card service-card p-4">
-            <div class="service-icon"><i class="bi bi-tools"></i></div>
-            <h5>Fixture Installations</h5>
-            <p class="mb-0">Expert installation for sinks, toilets, faucets, and smart home plumbing fixtures.</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card service-card p-4">
-            <div class="service-icon"><i class="bi bi-plug-fill"></i></div>
-            <h5>Electrical Troubleshooting</h5>
-            <p class="mb-0">Safe, code-aware electrical fixes for outlets, switches, and lighting systems.</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card service-card p-4">
-            <div class="service-icon"><i class="bi bi-house-gear-fill"></i></div>
-            <h5>Home Maintenance</h5>
-            <p class="mb-0">Seasonal tune-ups and preventative care to protect your property year-round.</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card service-card p-4">
-            <div class="service-icon"><i class="bi bi-hammer"></i></div>
-            <h5>Drywall and Minor Repairs</h5>
-            <p class="mb-0">Clean patching and finish work that restores walls and ceilings quickly.</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card service-card p-4">
-            <div class="service-icon"><i class="bi bi-wrench-adjustable-circle"></i></div>
-            <h5>Emergency Service Calls</h5>
-            <p class="mb-0">Rapid response for urgent issues when you need dependable help right away.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="reviews" class="section-pad" style="background:#fafafa;">
-    <div class="container">
-      <div class="row mb-4">
-        <div class="col-lg-8">
-          <span class="section-tag">Customer Reviews</span>
-          <h2>Trusted by local families and businesses</h2>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card review-card p-4">
-            <div class="stars mb-2">★★★★★</div>
-            <p class="mb-3">“They fixed our issue in one visit and explained everything clearly. We felt taken care of from start to finish.”</p>
-            <h6 class="mb-0">Amanda R.</h6>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card review-card p-4">
-            <div class="stars mb-2">★★★★★</div>
-            <p class="mb-3">“On time, professional, and very fair pricing. This is the only service team we call now.”</p>
-            <h6 class="mb-0">Derek M.</h6>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card review-card p-4">
-            <div class="stars mb-2">★★★★★</div>
-            <p class="mb-3">“Great communication and clean workmanship. The result looked better than expected.”</p>
-            <h6 class="mb-0">Sophie L.</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section-pad">
-    <div class="container">
-      <div class="row g-4 align-items-stretch">
-        <div class="col-lg-5">
-          <div class="hours-box p-4 h-100">
-            <h4 class="mb-3">Hours</h4>
-            <table class="table mb-3">
-              <tbody>
-                <tr><th scope="row">Availability</th><td>{{hours}}</td></tr>
-                <tr><th scope="row">Phone</th><td>{{phone}}</td></tr>
-                <tr><th scope="row">Address</th><td>{{address}}</td></tr>
-              </tbody>
-            </table>
-            <p class="mb-0"><i class="bi bi-geo-alt-fill me-2"></i>Serving your local area with fast response times.</p>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="map-box h-100">
-            <iframe src="{{mapsUrl}}" width="100%" height="100%" style="min-height:320px; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of {{businessName}}"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-banner py-5">
-    <div class="container">
-      <div class="row align-items-center g-3">
-        <div class="col-lg-8">
-          <h3 class="mb-0">Ready to get started with {{businessName}}?</h3>
-        </div>
-        <div class="col-lg-4 text-lg-end">
-          <a href="tel:{{phone}}" class="btn btn-light btn-lg px-4">Call {{phone}}</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="py-5">
-    <div class="container">
-      <div class="row g-3 align-items-center">
-        <div class="col-lg-8">
-          <h5 class="mb-2">{{businessName}}</h5>
-          <p class="mb-1">{{address}}</p>
-          <p class="mb-0"><a href="tel:{{phone}}">{{phone}}</a></p>
-        </div>
-        <div class="col-lg-4 text-lg-end">
-          <p class="powered mb-0">Powered by Rosarus</p>
-        </div>
-      </div>
-    </div>
+  <footer class="bg-light py-4">
+    <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Powered by Rosarus</div></div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/StartBootstrap/startbootstrap-creative@master/dist/js/scripts.js"></script>
 </body>
 </html>
